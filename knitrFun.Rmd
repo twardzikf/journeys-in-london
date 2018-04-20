@@ -1,0 +1,168 @@
+---
+title: "Public Transport Journeys by Type of Transport in London"
+author: "Filip Twardzik"
+date: "April 5, 2018"
+output: html_document
+---
+```{r setup, include=FALSE}
+# echo= FALSE causes R code to be visible
+knitr::opts_chunk$set(echo = TRUE)
+```
+<p align="center">
+<img src="underground.jpg" width="120px"> <img src="overground.png" width="120px"> <img src="dlr.png" width="120px">  <img src="tram.png" width="120px">  <img src="buses.png" width="120px">  
+</p>
+
+
+# 1. About the dataset
+This dataset comes from the Transport of London and is available [here](https://data.london.gov.uk/dataset/public-transport-journeys-type-transport). It consists of aggregated journeys by mode of transport (Underground, Overground, DLR, Tram, Bus) given in millions and by time with granularity of 4 weeks periods. In following chapters we will take a closer look at these statistics, perform a basic descriptive analysis and try to find some tendencies.
+
+> First, let us load our data set and take a look at its structure to identify the most relevant columns and finally see a preview of the selected data.
+
+```{r}
+library(knitr) # tables
+library(ggplot2) # plots
+library(stringr) # operations on strings
+library(grid) # positioning of plots
+library(tidyr) # data cleaning
+library(gridExtra)
+```
+
+```{r load data, show the structure and first rows, echo = TRUE}
+df <- read.csv(file="https://files.datapress.com/london/dataset/public-transport-journeys-type-transport/2018-04-04T10:37:19.81/tfl-journeys-type.csv" )
+kable( col.names = "Columns in the dataset", names(df) )
+cols = c("Period.beginning","Period.ending", "Bus.journeys..m.","DLR.Journeys..m.","Reporting.Period",
+         "Tram.Journeys..m.","Overground.Journeys..m.", "Underground.journeys..m.")
+df <- df[,cols[1:length(cols)]]
+
+```
+
+> We can already see, that there is no data for Overground, at least for the first periods. Let,s take a look at the last rows instead.
+
+```{r show the last rows}
+kable(tail(df[,cols[1:4]]))
+kable(tail(df[,cols[5:length(cols)]]))
+```
+
+> There is no missing data for the later periods, which is explainable by the fact that London Overgound, although in existence since 2007, went through major upgrades and restructuring in 2010 and later years, hence the gaps. Also as the source website states: *"Reliable Overground journey numbers have only been available since October 2010"*.
+
+> As the last preparation step we rename the columns in order to  ahchieve naming consistency and easier further use.
+
+```{r rename columns}
+names(df)[names(df)=="Reporting.Period"] <- "period_ord_number"
+names(df)[names(df)=="Period.beginning"] <- "period_begin"
+names(df)[names(df)=="Period.ending"] <- "period_end"
+names(df)[names(df)=="Bus.journeys..m."] <- "bus_journeys"
+names(df)[names(df)=="DLR.Journeys..m."] <- "dlr_journeys"
+names(df)[names(df)=="Tram.Journeys..m."] <- "tram_journeys"
+names(df)[names(df)=="Overground.Journeys..m."] <- "overground_journeys"
+names(df)[names(df)=="Underground.journeys..m."] <- "underground_journeys"
+
+#df <- replace_na(df, list("bus_journeys"="0", "dlr_journeys"="0", "tram_journeys"="0",
+#                          "overground_journeys"="0","underground_journeys"="0" ))
+cols2 <- c("period_ord_number","period_begin","period_end","bus_journeys","dlr_journeys",
+           "overground_journeys","tram_journeys","underground_journeys")
+kable(head(df[,cols2[1:4]]))
+kable(head(df[,cols2[5:length(cols2)]]))
+```
+
+# 2. Descriptive Analysis
+
+> First we want to visualize the number of journeys in millions per period for each transport mode. Our problem in achieving that is the time dimension: categorical instead of numerical. To overcome this we we write a small fucntion converting string representation of date to the unix timestamp
+
+```{r}
+# function converting date format dd-mmm-yy to timestamp
+normalize_date <- function( date ) {
+  months <- c("Jan"="01","Feb"="02","Mar"="03","Apr"="04","May"="05","Jun"="06",
+              "Jul"="07","Aug"="08","Sep"="09","Oct"="10","Nov"="11","Dec"="12")
+  # retrieve month part of the date
+  mon <- substr(date, 4,6)
+  # replace month string with appriopiate numerical representation
+  date <- str_replace(date,  mon, months[mon])
+  # convert two digit  to full four digits year representation
+  date <- paste( substr(date,1,6),"20",substr(date,7,8), sep="")
+  return( date )
+}
+date_to_timestamp <- function( date ) {
+  # convert modified date to numerical timestamp format
+  return( as.numeric(as.POSIXct( date , format="%d-%m-%Y")) )
+}
+#extract year, month and day from a date
+extract_day <- function( date ) return( as.numeric(substr(date,1,2)))
+extract_month <-function( date ) return(as.numeric(substr(date,4,5)))
+extract_year <- function( date ) return(as.numeric(substr(date,7,10)))
+```
+
+```{r}
+# normalize date
+df["period_begin"] <- apply(df["period_begin"], 1, normalize_date )
+df["period_end"] <- apply(df["period_end"], 1, normalize_date )
+# create new columns for extracted time data as day,month,year  and timestamp
+df["period_begin_day"] <- apply(df["period_begin"], 1, extract_day )
+df["period_begin_month"] <- apply(df["period_begin"], 1, extract_month )
+df["period_begin_year"] <- apply(df["period_begin"], 1, extract_year )
+df["period_end_day"] <- apply(df["period_end"], 1, extract_day )
+df["period_end_month"] <- apply(df["period_end"], 1, extract_month )
+df["period_end_year"] <- apply(df["period_end"], 1, extract_year )
+df["period_begin_timestamp"] <- apply(df["period_begin"], 1, date_to_timestamp )
+df["period_end_timestamp"] <- apply(df["period_end"], 1, date_to_timestamp )
+```
+
+```{r, warning=FALSE, echo=TRUE}
+ggplot(df, aes(x = period_end_timestamp)) + 
+  geom_line(aes(y = dlr_journeys), colour = "#00A4A7") + 
+  geom_line(aes(y = underground_journeys), colour = "#E32017") +
+  geom_line(aes(y = overground_journeys), colour = "#FF6600") +
+  geom_line(aes(y = tram_journeys), colour = "#66CC00") +
+  geom_line(aes(y = bus_journeys), colour = "#FF4040") +
+  ylab(label="Journeys in millions") + 
+  xlab("Time periods (28 days) from ")
+```
+
+> As we can clearly see, there are 8 distinctive minimums on the graph. Let's investigate them in that we take a closer look at shorter time periods: years 2013, 2015, 2017
+
+```{r, out.width="100%", fig.height=1.7}
+# Journeys in 2013
+g1 <- ggplot( data = df[ df["period_end_year"]==2013, ], aes(x = period_ord_number)) + 
+  geom_line(aes(y = dlr_journeys), colour = "#00A4A7") + 
+  geom_line(aes(y = underground_journeys), colour = "#E32017") + 
+  geom_line(aes(y = overground_journeys), colour = "#FF6600") + 
+  geom_line(aes(y = tram_journeys), colour = "#66CC00") +
+  geom_line(aes(y = bus_journeys), colour = "#FF4040") +
+  ylab(label="2013 journeys (mln)") + 
+  scale_x_discrete(name ="periods in year", limits=c("1","2","3","4","5","6","7","8","9","10","11","12","13"))
+
+# Journeys in 2015
+g2 <- ggplot(df[ df["period_end_year"]==2015, ], aes(x = period_ord_number)) + 
+  geom_line(aes(y = dlr_journeys), colour = "#00A4A7") + 
+  geom_line(aes(y = underground_journeys), colour = "#E32017") +
+  geom_line(aes(y = overground_journeys), colour = "#FF6600") +
+  geom_line(aes(y = tram_journeys), colour = "#66CC00") +
+  geom_line(aes(y = bus_journeys), colour = "#FF4040") +
+  ylab(label="2015 journeys (mln)") + 
+  scale_x_discrete(name ="periods in year", limits=c("1","2","3","4","5","6","7","8","9","10","11","12","13"))
+
+# Journeys in 2017
+g3 <- ggplot(df[ df["period_end_year"]==2017, ], aes(x = period_ord_number)) + 
+  geom_line(aes(y = dlr_journeys), colour = "#00A4A7") + 
+  geom_line(aes(y = underground_journeys), colour = "#E32017") +
+  geom_line(aes(y = overground_journeys), colour = "#FF6600") +
+  geom_line(aes(y = tram_journeys), colour = "#66CC00") +
+  geom_line(aes(y = bus_journeys), colour = "#FF4040") +
+  ylab(label="2017 journeys (mln)") + 
+  scale_x_discrete(name ="periods in year", limits=c("1","2","3","4","5","6","7","8","9","10","11","12","13"))
+grid.arrange(g1, g2, g3,ncol = 3)
+```
+
+> Eeach year TfL experiences a string decrease during the 10th period in journeys on all transport modes, altough this behaviour is most visible on buses and on the Underground. This is the period spanning over Christmas holidays and New Year, which gives us direct explanation to this downhill on graph.
+
+```{r}
+kable( df[ df$period_ord_number==10,c("period_begin","period_end") ] )
+```
+
+> What is also visible on the graph, is the great difference between the number of journeys by Undeground and Buses in comparion with other transport modes (Overground, DLR, Tram). Wa cannot draw any conclusions about the importance of the mode though, because all subnetworks vary strongly in the length and area they cover. Now we calculate the journeys statistics relatively to the overall length of each network, which is a good measure for its size and potential. As a result we get a metrics telling us , how heavily is used each transport mode per km.
+
+> First, we need the length of each subnetwork.
+
+```{r length of subnetworks}
+lengths <- data.frame( "transport_mode"=c("underground","overground","dlr","tram","buses"), "network_length"=c(402,167,38,28,0))
+```
