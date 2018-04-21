@@ -145,6 +145,14 @@ kable(head(df[,c("period_end_day","period_end_month","period_end_year")]))
 ```
 
 ## 4. Descriptive Analysis
+#### 4.1 Summary statistics
+To gain more insight in the data set perform summary statistics as the first step.
+```{r summary statistics}
+journey_cols <- c("dlr_journeys","underground_journeys","overground_journeys","tram_journeys","bus_journeys")
+kable(summary(df[journey_cols]) )
+```
+
+#### 4.2 Number of journeys as a function of time
 
 ```{r, warning=FALSE, echo=TRUE}
 ggplot(df, aes(x = period_end_timestamp)) + 
@@ -154,12 +162,12 @@ ggplot(df, aes(x = period_end_timestamp)) +
   geom_line(aes(y = tram_journeys), colour = "#66CC00") +
   geom_line(aes(y = bus_journeys), colour = "#FF4040") +
   ylab(label="Journeys in millions") + 
-  xlab("Time periods (28 days) from ")
+  xlab("Time periods (28 days) ")
 
 
 ```
 
-> As we can clearly see, there are 8 distinctive minimums on the graph. Let's investigate them in that we take a closer look at shorter time periods: years 2013, 2015, 2017
+As we can clearly see, there are 8 distinctive minimums on the graph. Let's investigate them in that we take a closer look at shorter time periods: years 2013, 2015, 2017
 
 ```{r, out.width="100%", fig.height=1.7}
 # Journeys in 2013
@@ -194,16 +202,50 @@ g3 <- ggplot(df[ df["period_end_year"]==2017, ], aes(x = period_number)) +
 grid.arrange(g1, g2, g3,ncol = 3)
 ```
 
-> Eeach year TfL experiences a string decrease during the 10th period in journeys on all transport modes, altough this behaviour is most visible on buses and on the Underground. This is the period spanning over Christmas holidays and New Year, which gives us direct explanation to this downhill on graph.
+Eeach year TfL experiences a strong decrease in usage of the transport network during the 10th period in journeys on all transport modes, altough this behaviour is most visible on buses and on the Underground. This is the period spanning over Christmas holidays and New Year, which gives us direct explanation to this downhill on graph.
 
 ```{r}
 kable( df[ df$period_number==10,c("period_begin","period_end") ] )
 ```
 
-> What is also visible on the graph, is the great difference between the number of journeys by Undeground and Buses in comparion with other transport modes (Overground, DLR, Tram). Wa cannot draw any conclusions about the importance of the mode though, because all subnetworks vary strongly in the length and area they cover. Now we calculate the journeys statistics relatively to the overall length of each network, which is a good measure for its size and potential. As a result we get a metrics telling us , how heavily is used each transport mode per km.
+#### 4.3 Studying and comparison of the relative usage of transport modes
 
-> First, we need the length of each subnetwork.
+What is also visible on the graph, is the great difference between the number of journeys by Undeground and Buses in comparion with other transport modes (Overground, DLR, Tram). Wa cannot draw any conclusions about the importance of the mode though, because all subnetworks vary strongly in the length and area they cover which results in different amounts of kilometers they make each period.
 
-```{r length of subnetworks}
-lengths <- data.frame( "transport_mode"=c("underground","overground","dlr","tram","buses"), "network_length"=c(402,167,38,28,0))
+##### 4.3.1 Total kilometers operated by each mode of transport.
+Numbers are given in millions and come from the annual TfL report for season 2015/2016.
+
+```{r total kilometers operated}
+total_km_operated <- data.frame( "transport_mode"=c("underground","overground","dlr","tram","bus"), 
+                       "km_operated"=c(82.5,10.5,6.0,3.0,492))
+kable(total_km_operated)
+```
+
+##### 4.3.2 Number of journeys divided by the amount of kilometers operated annualy.
+
+```{r normalize journey numbers}
+dfn <- data.frame(df)
+dfn["underground_journeys"] <-dfn["underground_journeys"] / 
+                             total_km_operated[ total_km_operated$transport_mode=="underground", "km_operated"]
+dfn["overground_journeys"] <-dfn["overground_journeys"] / 
+                             total_km_operated[ total_km_operated$transport_mode=="overground", "km_operated"]
+dfn["dlr_journeys"] <-dfn["dlr_journeys"] / 
+                             total_km_operated[ total_km_operated$transport_mode=="dlr", "km_operated"]
+dfn["tram_journeys"] <-dfn["tram_journeys"] / 
+                             total_km_operated[ total_km_operated$transport_mode=="tram", "km_operated"]
+dfn["bus_journeys"] <-dfn["bus_journeys"] / 
+                             total_km_operated[ total_km_operated$transport_mode=="bus", "km_operated"]
+```
+
+After considering the amount of total kilometers operated annualy by each mode of transport  the modified, relative numbers of passengers in consecutive years show us fairly different results than the absolute values plotted earlier.
+
+```{r plot normalized data}
+ggplot(dfn, aes(x = period_end_timestamp)) + 
+  geom_line(aes(y = dlr_journeys), colour = "#00A4A7") + 
+  geom_line(aes(y = underground_journeys), colour = "#E32017") +
+  geom_line(aes(y = overground_journeys), colour = "#FF6600") +
+  geom_line(aes(y = tram_journeys), colour = "#66CC00") +
+  geom_line(aes(y = bus_journeys), colour = "#FF4040") +
+  ylab(label="Journeys in millions") + 
+  xlab("Time periods (28 days) ")
 ```
