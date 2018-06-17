@@ -3,8 +3,8 @@ title: "Public Transport Journeys by Type of Transport in London"
 author: "Filip Twardzik"
 date: "April 5, 2018"
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 ---
 ```{r setup, include=FALSE, echo=FALSE}
 # echo= FALSE causes R code to be visible
