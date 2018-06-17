@@ -27,10 +27,15 @@ This dataset comes from the Transport of London and is available [here](https://
 ## 2. Understanding the structure
 
 #### 2.1 Load the data set and take a look at its structure to identify the most relevant columns.
+```{r, include=FALSE, echo=FALSE}
+tfl_src<- "https://files.datapress.com/london/dataset/public-transport-journeys-type-transport/2018-04-04T10:37:19.81/tfl-journeys-type.csv"
+
+
+```
 
 ```{r load data, show the structure, echo = TRUE}
 # load the csv file from the URL
-df <- read.csv(file="https://files.datapress.com/london/dataset/public-transport-journeys-type-transport/2018-04-04T10:37:19.81/tfl-journeys-type.csv")
+df <- read.csv(file=tfl_src)
 # show the columns of the data set as a knitr table
 kable( col.names = "Columns in the dataset", names(df) )
 # create a vector that contains the most relevant columns
@@ -80,7 +85,7 @@ df <- head(df, n=-1)
 ```
 
 #### 3.3 Replace all remaining NA values with 0
-It will help to avoid losing whole rows with missing values durin later analysis.
+It will help to avoid losing whole rows with missing values during later analysis.
 
 ```{r replace NA with 0}
 df <- replace_na(df, list("bus_journeys"=0, "dlr_journeys"=0, "tram_journeys"=0,
@@ -212,7 +217,7 @@ kable( df[ df$period_number==10,c("period_begin","period_end") ] )
 
 #### 4.3 Studying and comparison of the relative usage of transport modes
 
-What is also visible on the graph, is the great difference between the number of journeys by Undeground and Buses in comparion with other transport modes (Overground, DLR, Tram). Wa cannot draw any conclusions about the importance of the mode though, because all subnetworks vary strongly in the length and area they cover which results in different amounts of kilometers they make each period.
+What is also visible on the graph, is the great difference between the number of journeys by Underground and Buses in comparion with other transport modes (Overground, DLR, Tram). Wa cannot draw any conclusions about the importance of the mode though, because all subnetworks vary strongly in the length and area they cover which results in different amounts of kilometers they make each period.
 
 ##### 4.3.1 Total kilometers operated by each mode of transport.
 Numbers are given in millions and come from the annual TfL report for season 2015/2016.
@@ -239,7 +244,8 @@ dfn["bus_journeys"] <-dfn["bus_journeys"] /
                              total_km_operated[ total_km_operated$transport_mode=="bus", "km_operated"]
 ```
 
-After considering the amount of total kilometers operated annualy by each mode of transport  the modified, relative numbers of passengers in consecutive years show us fairly different results than the absolute values plotted earlier.
+After considering the amount of total kilometers operated annualy by each mode of transport  the modified, relative numbers of passengers in consecutive years show us fairly different results than the absolute values plotted earlier. 
+As seen on the graph, transport mode carrying most passegers per km of route it made is DLR, starting with similar values to Underground but consecutively outperformin it. Also Overground reaches upper part of graph showing very strong growth tendency. Transport mode performing the worst under this criterium are buses. This fact corrsponds well with the main idea of bus a transport mode in a big city - to assure regular connections to even much less populated parts of the city on the cost of longer journey time and distance as well as lower average occupancy. Specially high values for DLR compared to the size of its network is one of the effects of intensive [redevelopment](https://beebreeders.com/urban-redevelopment-of-the-london-docklands) of Docklands area in east London.
 
 ```{r plot normalized data}
 ggplot(dfn, aes(x = period_end_timestamp)) + 
@@ -251,3 +257,4 @@ ggplot(dfn, aes(x = period_end_timestamp)) +
   ylab(label="Journeys in millions") + 
   xlab("Time periods (28 days) ")
 ```
+
