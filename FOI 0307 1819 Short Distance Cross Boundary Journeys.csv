@@ -1,0 +1,509 @@
+Origin_Name,Origin_Zone,Dest_Name,Dest_Zone
+Barbican,1,Whitechapel,2
+Aldgate,1,Bethnal Green,2
+Aldgate,1,Stepney Green,2
+Aldgate,1,Whitechapel,2
+Aldgate,1,Shadwell DLR,2
+Aldgate,1,Shadwell LO,2
+Aldgate East,1,Bethnal Green,2
+Aldgate East,1,Mile End,2
+Aldgate East,1,Stepney Green,2
+Aldgate East,1,Whitechapel,2
+Aldgate East,1,Shadwell DLR,2
+Aldgate East,1,Rotherhithe,2
+Aldgate East,1,Shadwell LO,2
+Aldgate East,1,Wapping,2
+Angel,1,Mornington Cresc,2
+Baker Street,1,Maida Vale,2
+Baker Street,1,Royal Oak,2
+Baker Street,1,St Johns Wood,2
+Baker Street,1,Swiss Cottage,2
+Baker Street,1,Warwick Avenue,2
+Bank,1,Bethnal Green,2
+Bank,1,Kennington,2
+Bank,1,Whitechapel,2
+Barons Court,2,Gloucester Road,1
+Barons Court,2,High Street Kens,1
+Barons Court,2,South Kensington,1
+Bayswater,1,Holland Park,2
+Bayswater,1,Maida Vale,2
+Bayswater,1,Royal Oak,2
+Bayswater,1,Shepherds Bush,2
+Bayswater,1,Warwick Avenue,2
+Bayswater,1,Westbourne Park,2
+Bethnal Green,2,Aldgate,1
+Bethnal Green,2,Aldgate East,1
+Bethnal Green,2,Bank,1
+Bethnal Green,2,Liverpool Street,1
+Bethnal Green,2,Monument,1
+Bethnal Green,2,Moorgate,1
+Bethnal Green,2,Tower Hill,1
+Bond Street,1,Mornington Cresc,2
+Borough,1,Kennington,2
+Borough,1,Oval,2
+Caledonian Road,2,Euston,1
+Caledonian Road,2,Euston Square,1
+Caledonian Road,2,Kings Cross,1
+Caledonian Road,2,Russell Square,1
+Caledonian Road,2,Warren Street,1
+Camden Town,2,Euston,1
+Camden Town,2,Euston Square,1
+Camden Town,2,Goodge Street,1
+Camden Town,2,Kings Cross,1
+Camden Town,2,Oxford Circus,1
+Camden Town,2,Russell Square,1
+Camden Town,2,Tottenham Ct Rd,1
+Camden Town,2,Warren Street,1
+Cannon Street,1,Whitechapel,2
+Chalk Farm,2,Euston,1
+Chalk Farm,2,Kings Cross,1
+Chalk Farm,2,Warren Street,1
+Embankment,1,Kennington,2
+Earls Court,1/2,Holland Park,2
+Edgware Road,1,Holland Park,2
+Edgware Road,1,Kilburn Park,2
+Edgware Road,1,Ladbroke Grove,2
+Edgware Road,1,Maida Vale,2
+Edgware Road,1,Royal Oak,2
+Edgware Road,1,St Johns Wood,2
+Edgware Road,1,Warwick Avenue,2
+Edgware Road,1,Westbourne Park,2
+Euston,1,Caledonian Road,2
+Euston,1,Camden Town,2
+Euston,1,Chalk Farm,2
+Euston,1,Kentish Town,2
+Euston,1,Mornington Cresc,2
+Euston Square,1,Caledonian Road,2
+Euston Square,1,Camden Town,2
+Euston Square,1,Mornington Cresc,2
+Farringdon,1,Whitechapel,2
+Fulham Broadway,2,Gloucester Road,1
+Fulham Broadway,2,High Street Kens,1
+Fulham Broadway,2,South Kensington,1
+Gloucester Road,1,Barons Court,2
+Gloucester Road,1,Fulham Broadway,2
+Gloucester Road,1,Hammersmith D&P,2
+Gloucester Road,1,Holland Park,2
+Gloucester Road,1,Kensgton Olympia,2
+Gloucester Road,1,Parsons Green,2
+Gloucester Road,1,West Brompton,2
+Gloucester Road,1,West Kensington,2
+Gloucester Road,1,Hammersmith C&H,2
+Goodge Street,1,Camden Town,2
+Goodge Street,1,Mornington Cresc,2
+Gt Portland St,1,Mornington Cresc,2
+Gt Portland St,1,Royal Oak,2
+Gt Portland St,1,St Johns Wood,2
+Hammersmith D&P,2,Gloucester Road,1
+Hammersmith D&P,2,High Street Kens,1
+Wood Lane,2,Paddington,1
+Highbury,2,Kings Cross,1
+High Street Kens,1,Barons Court,2
+High Street Kens,1,Fulham Broadway,2
+High Street Kens,1,Hammersmith D&P,2
+High Street Kens,1,Holland Park,2
+High Street Kens,1,Kensgton Olympia,2
+High Street Kens,1,Shepherds Bush,2
+High Street Kens,1,West Brompton,2
+High Street Kens,1,West Kensington,2
+High Street Kens,1,Hammersmith C&H,2
+Holland Park,2,Bayswater,1
+Holland Park,2,Earls Court,1/2
+Holland Park,2,Edgware Road,1
+Holland Park,2,Gloucester Road,1
+Holland Park,2,High Street Kens,1
+Holland Park,2,Lancaster Gate,1
+Holland Park,2,Paddington,1
+Holland Park,2,Queensway,1
+Holloway Road,2,Kings Cross,1
+Kennington,2,Bank,1
+Kennington,2,Borough,1
+Kennington,2,Embankment,1
+Kennington,2,Lambeth North,1
+Kennington,2,London Bridge,1
+Kennington,2,Monument,1
+Kennington,2,Charing Cross,1
+Kennington,2,Waterloo,1
+Kensgton Olympia,2,Gloucester Road,1
+Kensgton Olympia,2,High Street Kens,1
+Kensgton Olympia,2,South Kensington,1
+Kentish Town,2,Euston,1
+Kentish Town,2,Kings Cross,1
+Kentish Town,2,Warren Street,1
+Kilburn Park,2,Edgware Road,1
+Kilburn Park,2,Paddington,1
+Kilburn Park,2,Royal Oak,2
+Kings Cross,1,Caledonian Road,2
+Kings Cross,1,Camden Town,2
+Kings Cross,1,Chalk Farm,2
+Kings Cross,1,Highbury,2
+Kings Cross,1,Holloway Road,2
+Kings Cross,1,Kentish Town,2
+Kings Cross,1,Mornington Cresc,2
+Ladbroke Grove,2,Edgware Road,1
+Ladbroke Grove,2,Paddington,1
+Ladbroke Grove,2,Warwick Avenue,2
+Lambeth North,1,Kennington,2
+Lambeth North,1,Oval,2
+Lancaster Gate,1,Holland Park,2
+Lancaster Gate,1,Shepherds Bush,2
+Latimer Road,2,Paddington,1
+Leicester Square,1,Mornington Cresc,2
+Liverpool Street,1,Bethnal Green,2
+Liverpool Street,1,Stepney Green,2
+Liverpool Street,1,Whitechapel,2
+Liverpool Street,1,Shadwell DLR,2
+Liverpool Street,1,Shadwell LO,2
+Liverpool Street,1,Wapping,2
+London Bridge,1,Kennington,2
+London Bridge,1,Whitechapel,2
+London Bridge,1,Bermondsey,2
+Maida Vale,2,Baker Street,1
+Maida Vale,2,Bayswater,1
+Maida Vale,2,Edgware Road,1
+Maida Vale,2,Marylebone,1
+Maida Vale,2,Paddington,1
+Maida Vale,2,Royal Oak,2
+Maida Vale,2,Westbourne Park,2
+Mansion House,1,Whitechapel,2
+Marylebone,1,Maida Vale,2
+Marylebone,1,Royal Oak,2
+Marylebone,1,St Johns Wood,2
+Marylebone,1,Warwick Avenue,2
+Marylebone,1,Westbourne Park,2
+Mile End,2,Aldgate East,1
+Monument,1,Bethnal Green,2
+Monument,1,Kennington,2
+Monument,1,Whitechapel,2
+Moorgate,1,Bethnal Green,2
+Moorgate,1,Whitechapel,2
+Mornington Cresc,2,Angel,1
+Mornington Cresc,2,Bond Street,1
+Mornington Cresc,2,Euston,1
+Mornington Cresc,2,Euston Square,1
+Mornington Cresc,2,Goodge Street,1
+Mornington Cresc,2,Gt Portland St,1
+Mornington Cresc,2,Kings Cross,1
+Mornington Cresc,2,Leicester Square,1
+Mornington Cresc,2,Oxford Circus,1
+Mornington Cresc,2,Regents Park,1
+Mornington Cresc,2,Russell Square,1
+Mornington Cresc,2,Tottenham Ct Rd,1
+Mornington Cresc,2,Warren Street,1
+Notting Hill Gt,1/2,Warwick Avenue,2
+Notting Hill Gt,1/2,West Brompton,2
+Notting Hill Gt,1/2,West Kensington,2
+Old Street,1,Whitechapel,2
+Oval,2,Borough,1
+Oval,2,Lambeth North,1
+Oval,2,Waterloo,1
+Oxford Circus,1,Camden Town,2
+Oxford Circus,1,Mornington Cresc,2
+Paddington,1,Wood Lane,2
+Paddington,1,Holland Park,2
+Paddington,1,Kilburn Park,2
+Paddington,1,Ladbroke Grove,2
+Paddington,1,Latimer Road,2
+Paddington,1,Maida Vale,2
+Paddington,1,Royal Oak,2
+Paddington,1,Warwick Avenue,2
+Paddington,1,Westbourne Park,2
+Parsons Green,2,Gloucester Road,1
+Queensway,1,Holland Park,2
+Queensway,1,Royal Oak,2
+Queensway,1,Shepherds Bush,2
+Regents Park,1,Mornington Cresc,2
+Regents Park,1,Royal Oak,2
+Regents Park,1,St Johns Wood,2
+Royal Oak,2,Baker Street,1
+Royal Oak,2,Bayswater,1
+Royal Oak,2,Edgware Road,1
+Royal Oak,2,Gt Portland St,1
+Royal Oak,2,Kilburn Park,2
+Royal Oak,2,Maida Vale,2
+Royal Oak,2,Marylebone,1
+Royal Oak,2,Paddington,1
+Royal Oak,2,Queensway,1
+Royal Oak,2,Regents Park,1
+Royal Oak,2,Warwick Avenue,2
+Russell Square,1,Caledonian Road,2
+Russell Square,1,Camden Town,2
+Russell Square,1,Mornington Cresc,2
+St Johns Wood,2,Baker Street,1
+St Johns Wood,2,Edgware Road,1
+St Johns Wood,2,Gt Portland St,1
+St Johns Wood,2,Marylebone,1
+St Johns Wood,2,Regents Park,1
+St Pauls,1,Whitechapel,2
+Shepherds Bush,2,Bayswater,1
+Shepherds Bush,2,High Street Kens,1
+Shepherds Bush,2,Lancaster Gate,1
+Shepherds Bush,2,Queensway,1
+South Kensington,1,Barons Court,2
+South Kensington,1,Fulham Broadway,2
+South Kensington,1,Kensgton Olympia,2
+South Kensington,1,West Brompton,2
+South Kensington,1,West Kensington,2
+Stepney Green,2,Aldgate,1
+Stepney Green,2,Aldgate East,1
+Stepney Green,2,Liverpool Street,1
+Stepney Green,2,Tower Hill,1
+Stepney Green,2,Tower Gateway,1
+Stockwell,2,Pimlico,1
+Swiss Cottage,2,Baker Street,1
+Tottenham Ct Rd,1,Camden Town,2
+Tottenham Ct Rd,1,Mornington Cresc,2
+Tower Hill,1,Bethnal Green,2
+Tower Hill,1,Stepney Green,2
+Tower Hill,1,Whitechapel,2
+Tower Hill,1,Shadwell DLR,2
+Tower Hill,1,Limehouse DLR,2
+Tower Hill,1,Shadwell LO,2
+Charing Cross,1,Kennington,2
+Warren Street,1,Caledonian Road,2
+Warren Street,1,Camden Town,2
+Warren Street,1,Chalk Farm,2
+Warren Street,1,Kentish Town,2
+Warren Street,1,Mornington Cresc,2
+Warwick Avenue,2,Baker Street,1
+Warwick Avenue,2,Bayswater,1
+Warwick Avenue,2,Edgware Road,1
+Warwick Avenue,2,Ladbroke Grove,2
+Warwick Avenue,2,Marylebone,1
+Warwick Avenue,2,Notting Hill Gt,1/2
+Warwick Avenue,2,Paddington,1
+Warwick Avenue,2,Royal Oak,2
+Warwick Avenue,2,Westbourne Park,2
+Waterloo,1,Kennington,2
+Waterloo,1,Oval,2
+Westbourne Park,2,Bayswater,1
+Westbourne Park,2,Edgware Road,1
+Westbourne Park,2,Maida Vale,2
+Westbourne Park,2,Marylebone,1
+Westbourne Park,2,Paddington,1
+Westbourne Park,2,Warwick Avenue,2
+West Brompton,2,Gloucester Road,1
+West Brompton,2,High Street Kens,1
+West Brompton,2,Notting Hill Gt,1/2
+West Brompton,2,South Kensington,1
+West Kensington,2,Gloucester Road,1
+West Kensington,2,High Street Kens,1
+West Kensington,2,Notting Hill Gt,1/2
+West Kensington,2,South Kensington,1
+Whitechapel,2,Barbican,1
+Whitechapel,2,Aldgate,1
+Whitechapel,2,Aldgate East,1
+Whitechapel,2,Bank,1
+Whitechapel,2,Cannon Street,1
+Whitechapel,2,Farringdon,1
+Whitechapel,2,Liverpool Street,1
+Whitechapel,2,London Bridge,1
+Whitechapel,2,Mansion House,1
+Whitechapel,2,Monument,1
+Whitechapel,2,Moorgate,1
+Whitechapel,2,Old Street,1
+Whitechapel,2,St Pauls,1
+Whitechapel,2,Tower Hill,1
+Whitechapel,2,Tower Gateway,1
+Whitechapel,2,Shoreditch H St,1
+Hammersmith C&H,2,Gloucester Road,1
+Hammersmith C&H,2,High Street Kens,1
+Pimlico,1,Stockwell,2
+Bermondsey,2,London Bridge,1
+Shadwell DLR,2,Aldgate,1
+Shadwell DLR,2,Aldgate East,1
+Shadwell DLR,2,Liverpool Street,1
+Shadwell DLR,2,Tower Hill,1
+Shadwell DLR,2,Tower Gateway,1
+Limehouse DLR,2,Tower Hill,1
+Limehouse DLR,2,Tower Gateway,1
+Tower Gateway,1,Stepney Green,2
+Tower Gateway,1,Whitechapel,2
+Tower Gateway,1,Shadwell DLR,2
+Tower Gateway,1,Limehouse DLR,2
+Tower Gateway,1,Shadwell LO,2
+Haggerston,2,Shoreditch H St,1
+Shoreditch H St,1,Whitechapel,2
+Shoreditch H St,1,Haggerston,2
+Shoreditch H St,1,Shadwell LO,2
+Shoreditch H St,1,Wapping,2
+Shoreditch H St,1,Dalston Junction,2
+Rotherhithe,2,Aldgate East,1
+Shadwell LO,2,Aldgate,1
+Shadwell LO,2,Aldgate East,1
+Shadwell LO,2,Liverpool Street,1
+Shadwell LO,2,Tower Hill,1
+Shadwell LO,2,Tower Gateway,1
+Shadwell LO,2,Shoreditch H St,1
+Wapping,2,Aldgate East,1
+Wapping,2,Liverpool Street,1
+Wapping,2,Shoreditch H St,1
+Dalston Junction,2,Shoreditch H St,1
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
