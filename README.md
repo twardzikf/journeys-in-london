@@ -2,7 +2,8 @@
 [![made-with-Markdown](https://img.shields.io/badge/Made%20with-Markdown-1f425f.svg)](http://commonmark.org)
 [![made-with-Markdown](https://img.shields.io/badge/made%20with-R-blue.svg)](https://www.r-project.org/)
 [![PyPI license](https://img.shields.io/pypi/l/ansicolortags.svg)](https://opensource.org/licenses/MIT)
-[![GitHub issues](https://img.shields.io/github/issues/Naereen/StrapDown.js.svg)](https://GitHub.com/twardzikf/rmarkdown-tfl-descriptive-analysis/issues/)
+[![GitHub issues](https://img.shields.io/github/issues/badges/shields.svg)](https://github.com/twardzikf/rmarkdown-tfl-descriptive-analysis/issues)
+
 ## Description
 
 This is my free time R notebook project, where i am getting familiar with R language and finding information in data. I chose the aggregated statistics on public transport usage by transport mode from Transport For London with the aim of cleaning and transforming  the dataset in order to extract as much information as possible. 
