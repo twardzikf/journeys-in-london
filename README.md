@@ -2,7 +2,7 @@
 [![made-with-Markdown](https://img.shields.io/badge/Made%20with-Markdown-1f425f.svg)](http://commonmark.org)
 [![made-with-R](https://img.shields.io/badge/made%20with-R-blue.svg)](https://www.r-project.org/)
 [![PyPI license](https://img.shields.io/pypi/l/ansicolortags.svg)](https://opensource.org/licenses/MIT)
-
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/twardzikf/rmarkdown-tfl-descriptive-analysis/graphs/commit-activity)
 
 ## Description
 
