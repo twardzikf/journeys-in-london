@@ -20,13 +20,13 @@ library(gridExtra)
 <img src="img/underground.jpg" width="120px"> <img src="img/overground.png" width="120px"> <img src="img/dlr.png" width="120px">  <img src="img/tram.png" width="120px">  <img src="img/buses.png" width="120px">  
 </p>
 
-## 1. About the dataset
+## **1. About the dataset**
 
 This dataset comes from the Transport of London and is available [here](https://data.london.gov.uk/dataset/public-transport-journeys-type-transport). It consists of aggregated journeys by mode of transport (Underground, Overground, Docklands Light Rail, Tram, Bus) given in millions and by time with granularity of 4 weeks periods. In following chapters I will take a closer look at these statistics in order to perform a basic descriptive analysis.
 
-## 2. Understanding the structure
+## **2. Understanding the structure**
 
-#### 2.1 Load the data set and take a look at its structure to identify the most relevant columns.
+#### **2.1 Load the data set and take a look at its structure to identify the most relevant columns.**
 ```{r, include=FALSE, echo=FALSE}
 tfl_src<- "https://files.datapress.com/london/dataset/public-transport-journeys-type-transport/2018-04-04T10:37:19.81/tfl-journeys-type.csv"
 
@@ -45,7 +45,7 @@ cols = c("Period.beginning","Period.ending", "Bus.journeys..m.","DLR.Journeys..m
 df <- df[,cols[1:length(cols)]]
 ```
 
-#### 2.2 Preview of the first and last rows in the data set.
+#### **2.2 Preview of the first and last rows in the data set.**
 
 ```{r preview of the data}
 # show the first and last 5 rows from the data set
@@ -57,10 +57,10 @@ kable(tail(df[,cols[5:length(cols)]], n=5))
 
 We can already identify some NA values for Overground in first periods as also for all modes of transport in the most recent period. First observation is explained directly by the information on the source website: *"Reliable Overground journey numbers have only been available since October 2010"*. Lack of data for the last period is explainable just by the fact that at the moment of writing this notebook the aggregated numbers were most probably just not yet available (compare the period: 04.03.2018 - 31.03.2018 with the publication date: 04.04.2018).
 
-## 3. Preparing the data
+## **3. Preparing the data**
 
-#### 3.1 Rename the columns
-This step helps to achieve naming consistency and easier, more intuitive further use. 
+#### **3.1 Rename the columns**
+This step helps achieving naming consistency and easier, more intuitive further use. 
 
 ```{r rename columns}
 # redefine the column names vector
@@ -77,14 +77,14 @@ names(df)[names(df)=="Overground.Journeys..m."] <- "overground_journeys"
 names(df)[names(df)=="Underground.journeys..m."] <- "underground_journeys"
 ```
 
-#### 3.2 Slice off the last reporting period
+#### **3.2 Slice off the last reporting period**
 Since it contains only NA values it is of no use for further analysis.
 
 ```{r slice off last row}
 df <- head(df, n=-1)
 ```
 
-#### 3.3 Replace all remaining NA values with 0
+#### **3.3 Replace all remaining NA values with 0**
 It will help to avoid losing whole rows with missing values during later analysis.
 
 ```{r replace NA with 0}
@@ -92,7 +92,7 @@ df <- replace_na(df, list("bus_journeys"=0, "dlr_journeys"=0, "tram_journeys"=0,
                           "overground_journeys"=0,"underground_journeys"=0 ))
 ```
 
-#### 3.4 Normalize date columns
+#### **3.4 Normalize date columns**
 Transform "period_begin" and "period_end" columns so that they follow one standard date format. Furthermore create new columns for extracted day, month and year from the date for later aggregation purposes. To achieve this write a helper function that transforms a date string into the desired format and three further functions for extraction of  day, month and year from the date.
 
 ```{r normalize date columns}
@@ -125,7 +125,7 @@ df["period_end_month"] <- apply(df["period_end"], 1, extract_month )
 df["period_end_year"] <- apply(df["period_end"], 1, extract_year )
 ```
 
-#### 3.5 Create columns with calculated timestamp
+#### **3.5 Create columns with calculated timestamp**
 Reason behind that is to represent date not only as a categorical value but also as a numerical quantity. To achieve this write a helper function that converts string representation of date to the unix timestamp.
 
 ```{r calculate timestamp}
@@ -139,7 +139,7 @@ df["period_begin_timestamp"] <- apply(df["period_begin"], 1, date_to_timestamp )
 df["period_end_timestamp"] <- apply(df["period_end"], 1, date_to_timestamp )
 ```
 
-#### 3.6 Preview of the transformed data
+#### **3.6 Preview of the transformed data**
 
 ```{r show transformed data}
 # show first and last 5 rows of the tranformed data including newly added columns
@@ -151,15 +151,15 @@ kable(head(df[,c("period_end_day","period_end_month","period_end_year")]))
 
 ```
 
-## 4. Descriptive Analysis
-#### 4.1 Summary statistics
+## **4. Descriptive Analysis**
+#### **4.1 Summary statistics**
 To gain more insight in the data set perform summary statistics as the first step.
 ```{r summary statistics}
 journey_cols <- c("dlr_journeys","underground_journeys","overground_journeys","tram_journeys","bus_journeys")
 kable(summary(df[journey_cols]) )
 ```
 
-#### 4.2 Number of journeys as a function of time
+#### **4.2 Number of journeys as a function of time**
 
 ```{r, warning=FALSE, echo=TRUE}
 ggplot(df, aes(x = period_end_timestamp)) + 
@@ -215,11 +215,11 @@ Eeach year TfL experiences a strong decrease in usage of the transport network d
 kable( df[ df$period_number==10,c("period_begin","period_end") ] )
 ```
 
-#### 4.3 Studying and comparison of the relative usage of transport modes
+#### **4.3 Studying and comparison of the relative usage of transport modes**
 
-What is also visible on the graph, is the great difference between the number of journeys by Underground and Buses in comparion with other transport modes (Overground, DLR, Tram). Wa cannot draw any conclusions about the importance of the mode though, because all subnetworks vary strongly in the length and area they cover which results in different amounts of kilometers they make each period.
+What is also visible on the graph, is the great difference between the number of journeys by Underground and Buses in comparion with other transport modes (Overground, DLR, Tram). We cannot draw any conclusions about the importance of the mode though, because all subnetworks vary strongly in the length and area they cover which results in different amounts of kilometers they make in each period.
 
-##### 4.3.1 Total kilometers operated by each mode of transport.
+##### **4.3.1 Total kilometers operated by each mode of transport.**
 Numbers are given in millions and come from the annual TfL report for season 2015/2016.
 
 ```{r total kilometers operated}
@@ -228,7 +228,7 @@ total_km_operated <- data.frame( "transport_mode"=c("underground","overground","
 kable(total_km_operated)
 ```
 
-##### 4.3.2 Number of journeys divided by the amount of kilometers operated annualy.
+##### **4.3.2 Number of journeys divided by the amount of kilometers operated annualy.**
 
 ```{r normalize journey numbers}
 dfn <- data.frame(df)
@@ -245,7 +245,7 @@ dfn["bus_journeys"] <-dfn["bus_journeys"] /
 ```
 
 After considering the amount of total kilometers operated annualy by each mode of transport  the modified, relative numbers of passengers in consecutive years show us fairly different results than the absolute values plotted earlier. 
-As seen on the graph, transport mode carrying most passegers per km of route it made is DLR, starting with similar values to Underground but consecutively outperformin it. Also Overground reaches upper part of graph showing very strong growth tendency. Transport mode performing the worst under this criterium are buses. This fact corrsponds well with the main idea of bus a transport mode in a big city - to assure regular connections to even much less populated parts of the city on the cost of longer journey time and distance as well as lower average occupancy. Specially high values for DLR compared to the size of its network is one of the effects of intensive [redevelopment](https://beebreeders.com/urban-redevelopment-of-the-london-docklands) of Docklands area in east London.
+As seen on the graph, transport mode carrying most passegers per km of route it made is DLR, starting with similar values to Underground but consecutively outperformin it. Also Overground reaches upper part of graph showing very strong growth tendency. Transport mode performing the worst under this criterium are buses. This fact corrsponds well with the main idea of bus a transport mode in a big city - to assure regular connections to even much less populated parts of the city on the cost of longer journey time and distance as well as lower average occupancy. Specially high values for DLR compared to the size of its network is one of the effects of intensive [redevelopment](https://beebreeders.com/urban-redevelopment-of-the-london-docklands) of Docklands area in east London in last 30 years.
 
 ```{r plot normalized data}
 ggplot(dfn, aes(x = period_end_timestamp)) + 
