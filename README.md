@@ -1,8 +1,8 @@
 # Descriptive Analysis of Transport for London Dataset
 [![made-with-Markdown](https://img.shields.io/badge/Made%20with-Markdown-1f425f.svg)](http://commonmark.org)
-[![made-with-Markdown](https://img.shields.io/badge/made%20with-R-blue.svg)](https://www.r-project.org/)
+[![made-with-R](https://img.shields.io/badge/made%20with-R-blue.svg)](https://www.r-project.org/)
 [![PyPI license](https://img.shields.io/pypi/l/ansicolortags.svg)](https://opensource.org/licenses/MIT)
-[![GitHub issues](https://img.shields.io/github/issues/badges/shields.svg)](https://github.com/twardzikf/rmarkdown-tfl-descriptive-analysis/issues)
+
 
 ## Description
 
