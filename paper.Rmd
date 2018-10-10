@@ -217,7 +217,7 @@ kable( df[ df$period_number==10,c("period_begin","period_end") ] )
 
 #### **4.3 Studying and comparison of the relative usage of transport modes**
 
-What is also visible on the graph, is the great difference between the number of journeys by Underground and Buses in comparion with other transport modes (Overground, DLR, Tram). We cannot draw any conclusions about the importance of the mode though, because all subnetworks vary strongly in the length and area they cover which results in different amounts of kilometers they make in each period.
+What is also visible on the graph, is the great difference between the number of journeys by Underground and Buses in comparion with other transport modes (Overground, DLR, Tram). We cannot draw any conclusions about the importance of the mode though, because all subnetworks vary strongly in the length and area they cover which results in different amounts of kilometers they make in each period. 
 
 ##### **4.3.1 Total kilometers operated by each mode of transport.**
 Numbers are given in millions and come from the annual TfL report for season 2015/2016.
@@ -258,3 +258,21 @@ ggplot(dfn, aes(x = period_end_timestamp)) +
   xlab("Time periods (28 days) ")
 ```
 
+## **5. Predictive Analysis**
+
+This section consists of my attempts to understand and apply basic forecasting methods to make predictions about the future numbers of journeys on one particular TfL service - Underground. The data set will be treated as time-series data where the periods are the time dimension and the number of journeys is the variable to be forecasted.
+
+#### **5.1 Extracting relevant data**
+
+```{r extract only relevant columns for predictive analytics}
+# create a vector that contains the most relevant columns for this section
+cols = c("period_begin_timestamp","period_end_timestamp","underground_journeys","period_begin_day",
+         "period_begin_month","period_begin_year","period_end_day","period_end_month","period_end_year")
+# filter the data set in order for it to contain only the previously selected columns
+df5 <- df[,cols[1:length(cols)]]
+
+# show first 5 rows of the modified data set 
+kable(head(df5, n=5))
+
+
+```
